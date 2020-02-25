@@ -179,9 +179,9 @@ static const char *const kSystemLibDir = "/system/lib64/";
 static const char *const kOdmLibDir = "/odm/lib64/";
 static const char *const kVendorLibDir = "/vendor/lib64/";
 #else
-static const char* const kSystemLibDir     = "/system/lib/";
-static const char* const kOdmLibDir        = "/odm/lib/";
-static const char* const kVendorLibDir     = "/vendor/lib/";
+static const char *const kSystemLibDir = "/system/lib/";
+static const char *const kOdmLibDir = "/odm/lib/";
+static const char *const kVendorLibDir = "/vendor/lib/";
 #endif
 
 void *fake_dlopen(const char *filename, int flags) {
@@ -221,6 +221,10 @@ void *fake_dlopen(const char *filename, int flags) {
 }
 
 void *fake_dlsym(void *handle, const char *name) {
+    if (!handle) {
+        log_info("fake_dlsym failed, *handle is null");
+        return 0;
+    }
     int k;
     struct ctx *ctx = (struct ctx *) handle;
     Elf_Sym *sym = (Elf_Sym *) ctx->dynsym;
