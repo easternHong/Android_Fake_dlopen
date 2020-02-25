@@ -27,4 +27,6 @@ public class MainActivity extends AppCompatActivity {
      * which is packaged with this application.
      */
     public native void  testDlopen();
+    public native void  dumpToLog();
+    public native void  invokeFunPoint();
 }
