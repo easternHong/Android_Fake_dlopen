@@ -10,6 +10,9 @@ cmake_minimum_required(VERSION 3.4.1)
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
+add_subdirectory(./libxhook ${CMAKE_CURRENT_BINARY_DIR}/libxhook)
+
+
 add_library( # Sets the name of the library.
         native-lib
 
@@ -43,4 +46,5 @@ target_link_libraries( # Specifies the target library.
 
         # Links the target library to the log library
         # included in the NDK.
-        ${log-lib})
+        ${log-lib}
+        xhook)
